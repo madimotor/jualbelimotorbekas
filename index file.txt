@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Madi Motor - Marketplace Motor Bekas</title>
+    <!-- Tailwind CSS CDN untuk styling yang cepat dan responsif -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Link ke file CSS Anda -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Firebase SDKs - Pastikan versi sesuai yang Anda gunakan -->
+    <!-- Ini adalah SDK yang dimuat di browser untuk berinteraksi dengan Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-functions-compat.js"></script>
+</head>
+<body class="min-h-screen flex flex-col">
+    <!-- Kotak Notifikasi -->
+    <div id="notification-box" class="notification-box"></div>
+
+    <!-- Header -->
+    <header class="bg-blue-700 text-white p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-3xl font-bold">Madi Motor</h1>
+            <nav>
+                <a href="#home" class="text-white hover:text-blue-200 mx-3 font-semibold">Beranda</a>
+                <a href="#sell-motor" class="text-white hover:text-blue-200 mx-3 font-semibold">Jual Motor</a>
+                <a href="#login" class="text-white hover:text-blue-200 mx-3 font-semibold">Login</a>
+                <a href="#register" class="text-white hover:text-blue-200 mx-3 font-semibold">Daftar</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto p-6">
+        <!-- Bagian Daftar Motor -->
+        <section id="home" class="mb-12">
+            <h2 class="text-4xl font-extrabold text-center text-blue-800 mb-8">Daftar Motor Bekas Tersedia</h2>
+            <div id="motor-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Data motor akan dimuat di sini oleh JavaScript -->
+                <p class="col-span-full text-center text-gray-600">Memuat daftar motor...</p>
+            </div>
+        </section>
+
+        <!-- Bagian Formulir Jual Motor -->
+        <section id="sell-motor" class="bg-white p-8 rounded-lg shadow-xl mb-12">
+            <h2 class="text-4xl font-extrabold text-center text-blue-800 mb-8">Jual Motor Anda</h2>
+            <form id="add-motor-form" class="space-y-6">
+                <div>
+                    <label for="merk" class="block text-gray-700 text-sm font-bold mb-2">Merk:</label>
+                    <input type="text" id="merk" name="merk" class="form-input w-full" placeholder="Contoh: Honda" required>
+                </div>
+                <div>
+                    <label for="model" class="block text-gray-700 text-sm font-bold mb-2">Model:</label>
+                    <input type="text" id="model" name="model" class="form-input w-full" placeholder="Contoh: Vario 150" required>
+                </div>
+                <div>
+                    <label for="tahunProduksi" class="block text-gray-700 text-sm font-bold mb-2">Tahun Produksi:</label>
+                    <input type="number" id="tahunProduksi" name="tahunProduksi" class="form-input w-full" placeholder="Contoh: 2020" required min="1900" max="2025">
+                </div>
+                <div>
+                    <label for="harga" class="block text-gray-700 text-sm font-bold mb-2">Harga (Rp):</label>
+                    <input type="number" id="harga" name="harga" class="form-input w-full" placeholder="Contoh: 18000000" required min="0">
+                </div>
+                <div>
+                    <label for="lokasiMotor" class="block text-gray-700 text-sm font-bold mb-2">Lokasi Motor:</label>
+                    <input type="text" id="lokasiMotor" name="lokasiMotor" class="form-input w-full" placeholder="Contoh: Jakarta Selatan" required>
+                </div>
+                <div>
+                    <label for="deskripsi" class="block text-gray-700 text-sm font-bold mb-2">Deskripsi:</label>
+                    <textarea id="deskripsi" name="deskripsi" class="form-input w-full h-24 resize-y" placeholder="Jelaskan kondisi motor, KM, pajak, dll."></textarea>
+                </div>
+                <div>
+                    <label for="foto" class="block text-gray-700 text-sm font-bold mb-2">Foto Motor:</label>
+                    <input type="file" id="foto" name="foto" class="form-input w-full p-2" accept="image/*" multiple>
+                    <p class="text-xs text-gray-500 mt-1">Unggah hingga 5 foto (opsional).</p>
+                    <div id="foto-preview" class="flex flex-wrap gap-2 mt-2"></div>
+                </div>
+                <button type="submit" class="btn-primary w-full">Unggah Motor</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white p-4 text-center mt-auto shadow-inner">
+        <p>&copy; 2025 Madi Motor. Hak Cipta Dilindungi.</p>
+    </footer>
+
+    <!-- Link ke file JavaScript Anda -->
+    <script src="app.js"></script>
+</body>
+</html>
